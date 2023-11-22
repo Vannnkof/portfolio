@@ -1,12 +1,20 @@
 "use client"
-import react from "react";
+import react, { useState } from "react";
 import Image from "next/image";
 import { TypeAnimation } from 'react-type-animation';
 import { motion } from "framer-motion";
+import Link from "next/link";
 
 const HeroSection = () => {
+  const [buttonClicked, setButtonClicked] = useState(false);
+
+  const handleButtonClick = () => {
+    window.location.href = '/CV_Khutorovyi_Ivan_Kyiv.pdf';
+    setButtonClicked(true);
+  };
+
   return (
-    <section className="lg:py-16">
+    <section id="hero" className="lg:py-16">
       <div className="grid grid-cols-1 sm:grid-cols-12">
         <motion.div
           initial={{ opacity: 0, scale: 0.5 }}
@@ -21,7 +29,7 @@ const HeroSection = () => {
             <br />
             <TypeAnimation
               sequence={[
-                'Ivan',
+                'Ivan Khutorovyi',
                 3000,
                 'Front-end Dev',
                 800,
@@ -39,10 +47,17 @@ const HeroSection = () => {
             &quot;A web developer and just a good guy who creates in the world of bits and pixels. Passionate about web technologies, I craft functional and stylish websites. Let&apos;s make the Internet better together!&quot;
           </p>
           <div>
-            <button className="px-6 py-3 w-full sm:w-fit rounded-full mr-4 bg-gradient-to-br from-blue-500 via-purple-500 to bg-orange-500 hover:bg-slate-200 text-white">
+            <Link
+              href="/#contact"
+              className="px-6 inline-block py-3 w-full sm:w-fit rounded-full mr-4 bg-gradient-to-br from-secondary-500 to-primary-500 hover:text-slate-200 text-white"
+            >
               Hire Me
-            </button>
-            <button className="px-1 py-1 w-full sm:w-fit rounded-full bg-gradient-to-br from-blue-500 via-purple-500 to bg-orange-500 text-white mt-3">
+            </Link>
+            <button
+              onClick={handleButtonClick}
+              disabled={buttonClicked}
+              className="px-1 py-1 w-full sm:w-fit rounded-full bg-gradient-to-br from-blue-500 via-purple-500 to bg-orange-500 text-white mt-3"
+            >
               <span className="block bg-[#121212] hover:bg-slate-800 rounded-full px-5 py-2">Download CV</span>
             </button>
           </div>
